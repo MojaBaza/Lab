@@ -1,0 +1,95 @@
+// Lab2.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    cout << "TASK 1 OUTPUT: ";
+    cout << 0.1 << endl << "With setprecision(30): " << setprecision(30) << 0.1;
+    cout << setprecision(100) << endl;
+    int x = 7, y = 3;
+    float xf = 7.0, yf = 3.0;
+    cout << "Int: " << x / y << endl << "Float: " << xf / yf << endl; //int / int =always= int.
+    cout << "Int to Float:" << float(x) / float(y);
+    cout << endl << endl;
+
+    cout << "TASK 2 OUTPUT: ";
+    cout << "Write a number: ";
+    int number;
+    cin >> number;
+    if (number % 2 == 0)
+    {
+        cout << "This number is even";
+    }
+    else
+    {
+        cout << "This number is odd";
+    }
+    int absolute = (number < 0) ? -number : number;
+    cout << endl << absolute;
+    cout << endl << endl;
+
+    cout << "TASK 3 OUTPUT: ";
+    cout << endl;
+    int a = 5;
+    while (a > 0)
+    {
+        cout << a << ", ";
+        a--;
+    }
+    cout << endl;
+    a = 1;
+    do
+    {
+        cout << a << ", ";
+        a++;
+    } while (a < 6);
+    cout << endl;
+    for (a = 0; a < 11; a = a + 2)
+    {
+        cout << a << ", ";
+    }
+    cout << endl << endl;
+
+    cout << "TASK 4 OUTPUT: ";
+    int sum = 0;
+    for (a = 1; a < 101; a++)
+    {
+        sum += a;
+    }
+    cout << endl << "Sum: " << sum;
+    
+    cout << endl << "Your number: ";
+    while (number != 0)
+    {
+        cin >> number;
+        if (number > 0)
+        {
+            cout << endl << "The number is positive.";
+        }
+        else if(number < 0)
+        {
+            cout << endl << "The number is negative.";
+        }
+        if (number != 0) cout << endl << "Your number: ";
+    }
+
+    for (a = 1; a < 11; a++)
+    {
+        cout << a * a << ", ";
+    }
+
+    cout << endl << endl;
+    for (int row = 0; row < 4; row++)
+    {
+        for (int column = 0; column < 6; column++)
+        {
+            cout << "*";
+        }
+        cout << endl;
+    }
+}
