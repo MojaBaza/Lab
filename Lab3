@@ -1,0 +1,102 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int number;
+	cout << "TASK 1" << endl << "Enter a number between 1 and 6: ";
+	cin >> number;
+	switch (number)
+	{
+	case 1:
+		cout << "*"; break;
+	case 2:
+		cout << "**"; break;
+	case 3:
+		cout << "***"; break;
+	case 4:
+		cout << "****"; break;
+	case 5:
+		cout << "*****"; break;
+	case 6:
+		cout << "******"; break;
+	default:
+		cout << "Invalid input"; break;
+	}
+
+	int ar [10];
+	cout << endl << endl << "TASK 2" << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		ar[i] = i * 2;
+		cout << ar[i] << " ";
+	}
+
+	double numbers[5];
+	double sum = 0;
+	cout << endl << endl << "TASK 3" << endl << "Please, enter 5 numbers." << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Enter " << i + 1 << ". number: ";
+		cin >> numbers[i];
+		sum += numbers[i];
+	}
+	cout << "Average: " << sum / 5;
+
+	cout << endl << endl << "TASK 4" << endl;
+	int arr[6] = { 1, 2, 3, 4, 5, 6 };
+	for (int i = 0; i < 6; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		swap(arr[i], arr[5 - i]);
+	}
+	for (int i = 0; i < 6; i++)
+	{
+		cout << arr[i] << " ";
+	}
+
+	cout << endl << endl << "TASK 5" << endl;
+	int spiral[4][4];
+	int top = 0, bottom = 3, left = 0, right = 3;
+	int num = 0;
+	while (top <= bottom && left <= right)
+	{
+		for (int i = left; i <= right; i++)
+		{
+			spiral[top][i] = num;
+			num++;
+		}
+		top++;
+		for (int i = top; i <= bottom; i++)
+		{
+			spiral[i][right] = num;
+			num++;
+		}
+		right--;
+		for (int i = right; i >= left; i--)
+		{
+			spiral[bottom][i] = num;
+			num++;
+		}
+		bottom--;
+		for (int i = bottom; i >= top; i--)
+		{
+			spiral[i][left] = num;
+			num++;
+		}
+		left++;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		for (int c = 0; c < 4; c++)
+		{
+			cout << spiral[i][c] << " ";
+		}
+		cout << endl;
+	}
+}
