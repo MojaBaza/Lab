@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int i, w, r, p, k;
+
+    cout << "Enter i: ";
+    cin >> i;
+    cout << "Enter w: ";
+    cin >> w;
+    cout << "Enter r: ";
+    cin >> r;
+    cout << "Enter p: ";
+    cin >> p;
+    cout << "Enter k: ";
+    cin >> k;
+
+    string filename = "population.txt";
+    ifstream file(filename);
+
+    vector<vector<int>> population;
+
+    string line;
+    while (getline(file, line)) {
+        stringstream ss(line);
+        vector<int> chromosome;
+        int gene;
+        while (ss >> gene) {
+            chromosome.push_back(gene);
+        }
+        population.push_back(chromosome);
+    }
+
+    cout << "i = " << i << ", w = " << w << ", r = " << r << ", p = " << p << ", k = " << k << "\n";
+
+    for (size_t idx = 0; idx < population.size(); ++idx) {
+        cout << "Individual " << idx + 1 << ": ";
+        for (int gene : population[idx]) cout << gene << " ";
+        cout << endl;
+    }
+
+    return 0;
+}
