@@ -1,0 +1,40 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main() {
+    string filename = "population.txt";
+    ifstream fin(filename);
+
+    int i, w, r, p, k;
+    string line;
+    if (getline(fin, line)) 
+    {
+        stringstream ss(line);
+        ss >> i >> w >> r >> p >> k;
+    } 
+    else 
+    {
+        cout << "User manual" << endl;
+    }
+
+    vector<vector<int>> population;
+    while (getline(fin, line))
+    {
+        stringstream ss(line);
+        vector<int> chromosome;
+        int gene;
+        while (ss >> gene) chromosome.push_back(gene);
+        population.push_back(chromosome);
+    }
+
+    for (size_t idx = 0; idx < population.size(); ++idx) {
+        cout << "Osobnik " << idx+1 << ": ";
+        for (int gene : population[idx]) cout << gene << " ";
+        cout << endl;
+    }
+    return 0;
+}
