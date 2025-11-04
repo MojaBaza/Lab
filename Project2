@@ -31,11 +31,30 @@ int main() {
         population.push_back(chromosome);
     }
 
+    //
+    ofstream solution("results.txt");
+    for (size_t idx = 0; idx < population.size(); ++idx) 
+    {
+        solution << "Individual " << idx+1 << ": ";
+        if (f[ix] >= w)//
+        {
+            for (int gene : population[idx]) cout << gene << " ";
+            solution << endl;
+            if (f > r)//
+            {
+                for (int gene : population[idx]) cout << gene << " ";
+                solution << endl;
+            }
+        }
+    }
+	solution.close();
+
+    /////////////////////////////////
     for (size_t idx = 0; idx < population.size(); ++idx) 
     {
         cout << "Individual " << idx+1 << ": ";
         for (int gene : population[idx]) cout << gene << " ";
         cout << endl;
-    }
+    }///
     return 0;
 }
