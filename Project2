@@ -31,8 +31,9 @@ int main() {
         population.push_back(chromosome);
     }
 
-    for (size_t idx = 0; idx < population.size(); ++idx) {
-        cout << "Osobnik " << idx+1 << ": ";
+    for (size_t idx = 0; idx < population.size(); ++idx) 
+    {
+        cout << "Individual " << idx+1 << ": ";
         for (int gene : population[idx]) cout << gene << " ";
         cout << endl;
     }
