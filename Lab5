@@ -1,0 +1,315 @@
+// TASK 1: constexpr Power Function
+// Write a constexpr function called 'power' that calculates base^exponent.
+// Requirements:
+// - Function signature: constexpr long int power(const int base, const int exponent)
+// - Use iterative approach (loop)
+// - Handle exponent = 0 (return 1)
+// - Test with: power(2, 10), power(5, 3), power(3, 0)
+// - Declare an array with size power(2, 4) to verify compile-time evaluation
+
+// TASK 2: consteval Fibonacci
+// Write a consteval function called 'fibonacci' that returns the nth Fibonacci number.
+// Requirements:
+// - Function signature: consteval long int fibonacci(const int n)
+// - Use recursive approach
+// - Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21...
+// - Test with compile-time constants: fibonacci(0), fibonacci(10), fibonacci(15)
+// - Try calling it with a runtime variable and observe the compilation error
+
+// TASK 3: Static Counter with Reset
+// Write a function called 'counter' with a static variable that counts calls.
+// Then write a second function called 'reset_counter' that resets the count to 0.
+// Requirements:
+// - Function signatures: 
+//   int counter()
+//   void reset_counter()
+// - counter() increments and returns the current count
+// - Test by calling counter() 5 times, then reset_counter(), then counter() 3 more times
+// - Print all returned values to verify the reset works
+
+// TASK 4: Function with Multiple Default Parameters
+// Write a function called 'print_grade' that prints student information.
+// Requirements:
+// - Function signature: void print_grade(const std::string name, const int score, 
+//                                        const std::string course = "Programming", 
+//                                        const std::string semester = "Fall 2025")
+// - Print format: "[name] scored [score] in [course] ([semester])"
+// - Test with: 
+//   - All 4 parameters provided
+//   - Only name and score (use defaults for course and semester)
+//   - Name, score, and course (use default for semester)
+
+// TASK 5: Array Statistics Functions
+// Write three functions to work with double arrays:
+// Requirements:
+// - double find_max(const double array[], const int length) - returns maximum value
+// - double find_min(const double array[], const int length) - returns minimum value
+// - double calculate_average(const double array[], const int length) - returns average
+// - Test with an array: {23.5, 67.8, 12.3, 89.1, 45.6, 34.2}
+// - Print all three statistics
+
+// TASK 6: Vector Manipulation
+// Write two functions that work with std::vector<int>:
+// Requirements:
+// - void remove_negatives(std::vector<int> & vec) - removes all negative numbers
+// - int sum_elements(const std::vector<int> & vec) - returns sum of all elements
+// - Test with vector: {10, -5, 20, -15, 30, -25, 40}
+// - Print vector before and after removing negatives
+// - Print sum before and after removing negatives
+// Hint: To remove elements, create a new vector with only positive values, 
+//       then use vec = new_vector
+
+// TASK 7: String Vector Operations
+// Write two functions for working with std::vector<std::string>:
+// Requirements:
+// - void print_strings(const std::vector<std::string> & vec) - prints all strings
+//   with their index: "0: first_string\n1: second_string\n..."
+// - std::string find_longest(const std::vector<std::string> & vec) - returns the longest string
+//   (if multiple strings have same max length, return the first one)
+// - Test with: {"C++", "Python", "JavaScript", "Go", "Rust", "Assembly"}
+// - Print all strings and identify the longest one
+
+// TASK 8: Combined Challenge
+// Create a program that:
+// Requirements:
+// - Declares a std::vector<double> to store temperatures
+// - Write function: void add_temperature(std::vector<double> & temps, double temp)
+// - Write function: void print_statistics(const std::vector<double> & temps) that prints:
+//   - Number of readings
+//   - Highest temperature
+//   - Lowest temperature
+//   - Average temperature
+// - In main: Add at least 7 temperature readings (use push_back or your add_temperature function)
+// - Call print_statistics to display the results
+// - Test with temperatures like: {20.5, 22.3, 19.8, 23.1, 21.7, 18.9, 24.2}
+
+// INSTRUCTIONS:
+// - Implement each task in order
+// - Test your functions in the main() function
+// - Use std::cout for output
+// - Add comments to explain your logic
+// - Make sure your code compiles without errors
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+// TASK 1: constexpr Power Function
+constexpr long int power(const int base, const int exponent) {
+    if (exponent == 0) return 1;
+    long int result = 1;
+    for (int i = 0; i < exponent; ++i) 
+    {
+        result *= base;
+    }
+    return result;
+}
+
+/*// TASK 2: consteval Fibonacci
+consteval long int fibonacci(const int n)
+{
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}*/
+
+// TASK 3: Static Counter with Reset
+int counter() 
+{
+    static int count = 0;
+    return ++count;
+}
+
+void reset_counter() 
+{
+    static int count = 0;
+    count = 0;
+}
+
+// TASK 4: Function with Multiple Default Parameters
+void print_grade(const std::string name, const int score, const std::string course = "Programming", const std::string semester = "Fall 2025") 
+{
+    std::cout << name << " scored " << score << " in " << course << " (" << semester << ")\n";
+}
+
+// TASK 5: Array Statistics Functions
+double find_max(const double array[], const int length) 
+{
+    double max_val = array[0];
+    for (int i = 1; i < length; ++i) 
+    {
+        if (array[i] > max_val) max_val = array[i];
+    }
+    return max_val;
+}
+
+double find_min(const double array[], const int length) 
+{
+    double min_val = array[0];
+    for (int i = 1; i < length; ++i) 
+    {
+        if (array[i] < min_val) min_val = array[i];
+    }
+    return min_val;
+}
+
+double calculate_average(const double array[], const int length) 
+{
+    double sum = 0;
+    for (int i = 0; i < length; ++i) 
+    {
+        sum += array[i];
+    }
+    return sum / length;
+}
+
+// TASK 6: Vector Manipulation
+void remove_negatives(std::vector<int>& vec) 
+{
+    std::vector<int> new_vec;
+    for (int num : vec) {
+        if (num >= 0) {
+            new_vec.push_back(num);
+        }
+    }
+    vec = new_vec;
+}
+
+int sum_elements(const std::vector<int>& vec) {
+    int sum = 0;
+    for (int num : vec) {
+        sum += num;
+    }
+    return sum;
+}
+
+// TASK 7: String Vector Operations
+void print_strings(const std::vector<std::string>& vec) 
+{
+    for (size_t i = 0; i < vec.size(); ++i) 
+    {
+        std::cout << i << ": " << vec[i] << "\n";
+    }
+}
+
+std::string find_longest(const std::vector<std::string>& vec) 
+{
+    std::string longest = vec[0];
+    for (const auto& str : vec) 
+    {
+        if (str.length() > longest.length()) 
+        {
+            longest = str;
+        }
+    }
+    return longest;
+}
+
+// TASK 8: Combined Challenge
+void add_temperature(std::vector<double>& temps, double temp) 
+{
+    temps.push_back(temp);
+}
+
+void print_statistics(const std::vector<double>& temps) 
+{
+    if (temps.empty()) return;
+
+    double max_temp = temps[0], min_temp = temps[0], sum = 0;
+    for (double temp : temps) {
+        if (temp > max_temp) max_temp = temp;
+        if (temp < min_temp) min_temp = temp;
+        sum += temp;
+    }
+    double average = sum / temps.size();
+
+    std::cout << "Number of readings: " << temps.size() << "\n";
+    std::cout << "Highest temperature: " << max_temp << "\n";
+    std::cout << "Lowest temperature: " << min_temp << "\n";
+    std::cout << "Average temperature: " << average << "\n";
+}
+
+int main() 
+{
+    std::cout << "=== FUNDAMENTALS OF COMPUTER PROGRAMMING - PRACTICE TASKS ===\n\n";
+
+    // TASK 1 - Test power function
+    std::cout << "TASK 1: constexpr Power Function\n";
+    std::cout << "--------------------------------\n";
+    std::cout << "power(2, 10): " << power(2, 10) << "\n";
+    std::cout << "power(5, 3): " << power(5, 3) << "\n";
+    std::cout << "power(3, 0): " << power(3, 0) << "\n";
+    long int arr[power(2, 4)] = {};  // Verifying compile-time evaluation
+    std::cout << "Array size for power(2, 4): " << sizeof(arr) / sizeof(arr[0]) << "\n\n";
+
+    /*// TASK 2 - Test fibonacci function
+    std::cout << "TASK 2: consteval Fibonacci\n";
+    std::cout << "----------------------------\n";
+    std::cout << "fibonacci(0): " << fibonacci(0) << "\n";
+    std::cout << "fibonacci(10): " << fibonacci(10) << "\n";
+    std::cout << "fibonacci(15): " << fibonacci(15) << "\n\n";*/
+
+    // TASK 3 - Test counter functions
+    std::cout << "TASK 3: Static Counter with Reset\n";
+    std::cout << "----------------------------------\n";
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "counter() call " << (i + 1) << ": " << counter() << "\n";
+    }
+    reset_counter();
+    std::cout << "After reset:\n";
+    for (int i = 0; i < 3; ++i) {
+        std::cout << "counter() call " << (i + 1) << ": " << counter() << "\n";
+    }
+    std::cout << "\n";
+
+    // TASK 4 - Test print_grade function
+    std::cout << "TASK 4: Function with Default Parameters\n";
+    std::cout << "-----------------------------------------\n";
+    print_grade("John", 90, "Math", "Spring 2025");
+    print_grade("Alice", 85);
+    print_grade("Bob", 78, "Physics");
+    std::cout << "\n";
+
+    // TASK 5 - Test array statistics
+    std::cout << "TASK 5: Array Statistics\n";
+    std::cout << "------------------------\n";
+    double arr2[] = { 23.5, 67.8, 12.3, 89.1, 45.6, 34.2 };
+    std::cout << "Max: " << find_max(arr2, 6) << "\n";
+    std::cout << "Min: " << find_min(arr2, 6) << "\n";
+    std::cout << "Average: " << calculate_average(arr2, 6) << "\n\n";
+
+    // TASK 6 - Test vector manipulation
+    std::cout << "TASK 6: Vector Manipulation\n";
+    std::cout << "---------------------------\n";
+    std::vector<int> vec = { 10, -5, 20, -15, 30, -25, 40 };
+    std::cout << "Before removing negatives:\n";
+    for (int v : vec) std::cout << v << " ";
+    std::cout << "\n";
+    std::cout << "Sum: " << sum_elements(vec) << "\n";
+    remove_negatives(vec);
+    std::cout << "After removing negatives:\n";
+    std::cout << "Sum: " << sum_elements(vec) << "\n";
+    std::cout << "Vector: ";
+    for (int v : vec) std::cout << v << " ";
+    std::cout << "\n\n";
+
+    // TASK 7 - Test string vector operations
+    std::cout << "TASK 7: String Vector Operations\n";
+    std::cout << "---------------------------------\n";
+    std::vector<std::string> str_vec = { "C++", "Python", "JavaScript", "Go", "Rust", "Assembly" };
+    print_strings(str_vec);
+    std::cout << "Longest string: " << find_longest(str_vec) << "\n\n";
+
+    // TASK 8 - Test temperature statistics
+    std::cout << "TASK 8: Temperature Statistics\n";
+    std::cout << "------------------------------\n";
+	double temp_inputs[] = { 20.5, 22.3, 19.8, 23.1, 21.7, 18.9, 24.2 };
+	std::vector<double> temps = {};
+    for (double temp : temp_inputs) 
+    {
+        add_temperature(temps, temp);
+	}
+    print_statistics(temps);
+
+    return 0;
+}
